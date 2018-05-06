@@ -1,12 +1,11 @@
 
 
 public class Battleship extends Ship {
-protected static int taille = 4;
+	protected static int lenghtBattleShip = 5;
 	
 	
-	public Battleship() {
-		super(taille);
-		
+	public Battleship(String startCoord, String endCoord) {
+		super(startCoord, endCoord);
+		this.taille= lenghtBattleShip;
 	}
-
 }
