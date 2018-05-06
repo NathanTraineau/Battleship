@@ -1,11 +1,12 @@
 
 
 public class Carrier extends Ship{
-	protected static int taille = 5;
+	protected static int lenghtCarrier = 5;
 	
 	
-	public Carrier() {
-		super(taille);
+	public Carrier(String startCoord, String endCoord) {
+		super(startCoord, endCoord);
+		this.taille= lenghtCarrier;
 		
 	}
 
