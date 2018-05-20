@@ -13,7 +13,7 @@ public class AI1 extends AI{
 		
 	}
 	
-	public Coordinates shoot(Rules rules,Player opponentPlayer) {
+	public Coordinates shoot(Rules rules,IPlayer opponentPlayer) {
 		
 		Coordinates shot = chooseRandomCoordinates(opponentPlayer);
 		if (shot.containsCoord(getShotCoords())) {

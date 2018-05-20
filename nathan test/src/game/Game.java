@@ -14,11 +14,11 @@ public class Game {
 		
 	}
 	Scanner sc1 = new Scanner(System.in);
-	public Player play(Rules rules, Player p1, Player p2) {
+	public IPlayer play(Rules rules, IPlayer p1, IPlayer p2) {
 		// play a game between the 2 players with the rules given and return the winer
 		
 		// List of players
-		Player[] players = {p1,p2};
+		IPlayer[] players = {p1,p2};
 		// initialize the scanner to get the info
 		
 		
@@ -26,16 +26,16 @@ public class Game {
 		int[] ListOfShiptoPlace = rules.getListOfShipsToPlace();
 		
 		
-		for (Player player : players) {
+		for (IPlayer iPlayer : players) {
 			// Creation des map
-			player.setPlayerMap( rules.getLenghtMap(),rules.getHeightMap());
+			iPlayer.setPlayerMap( rules.getLenghtMap(),rules.getHeightMap());
 			
 			//****************************** Ships Placement *******************************************
 			
-			if (player instanceof Human) {
+			if (iPlayer instanceof Human) {
 			System.out.println("Please enter your name");
-			player.setName(sc1.nextLine());
-			System.out.println(player.getName()+" please put your ships on your map");
+			iPlayer.setName(sc1.nextLine());
+			System.out.println(iPlayer.getName()+" please put your ships on your map");
 			System.out.println("For each ships enter 2 coordinates like'A-2','A-3' in two times ( separated with an enter)");
 			}
 			
@@ -49,7 +49,7 @@ public class Game {
 			for ( int size : ListOfShiptoPlace) {
 				
 				//******Human********
-				if (player instanceof Human) {
+				if (iPlayer instanceof Human) {
 					System.out.println("Please put on the map a Ship "+ size + " tall");
 					
 						do{
@@ -58,7 +58,7 @@ public class Game {
 							System.out.println("Please enter the End coordinates");
 							askEndCoord =sc1.nextLine();
 						}
-						while(!rules.verifShipCoordinates(player, askStartCoord,askEndCoord, size));
+						while(!rules.verifShipCoordinates(iPlayer, askStartCoord,askEndCoord, size));
 						
 							startCoord = new Coordinates(askStartCoord);
 							endCoord = new Coordinates(askEndCoord);
@@ -67,18 +67,18 @@ public class Game {
 				//**************
 				
 				//******AI********
-				if (player instanceof AI) {
-						Coordinates[] coords = ((AI) player).chooseShipCoordinates(rules, player, size);
+				if (iPlayer instanceof AI) {
+						Coordinates[] coords = ((AI) iPlayer).chooseShipCoordinates(rules, iPlayer, size);
 						startCoord = coords[0];
 						endCoord = coords[1];
 				
 				}
 				
 				// now that we have 2 coordinates we create the Ship
-				player.addShipPlayer(new Ship(startCoord,endCoord));
-				if (player instanceof Human) {
+				iPlayer.addShipPlayer(new Ship(startCoord,endCoord));
+				if (iPlayer instanceof Human) {
 				System.out.println("this is your current map");
-				player.getPlayerMap().ownMapDisplay();
+				iPlayer.getPlayerMap().ownMapDisplay();
 				}
 			}
 				//**************
@@ -86,8 +86,8 @@ public class Game {
 	
 		
 		// Each player launch a missile when his turn comes
-		Player opponentPlayer = null;
-		Player currentPlayer = null;
+		IPlayer opponentPlayer = null;
+		IPlayer currentPlayer = null;
 		
 		
 		//************************* ATTAK ***************************************************
@@ -170,7 +170,6 @@ public class Game {
 				
 				
 				if (currentPlayer instanceof AI2) {
-					currentPlayerMap.opponentMapDisplay();
 					((AI2) currentPlayer).setCurrentNumberOfMissShots(0);
 					((AI2) currentPlayer).addHitShots(missileCoord);
 					if (hitShip.isDestroyed()) {

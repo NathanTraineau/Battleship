@@ -1,9 +1,7 @@
 package game;
-import java.util.Scanner;
-
 import boardGame.Coordinates;
 import boardGame.Map;
-import player.Player;
+import player.IPlayer;
 
 public class Rules {
 	
@@ -56,12 +54,12 @@ public class Rules {
 		
 	}
 	
-	public  boolean inMap(Player player ,  Coordinates coords) {
+	public  boolean inMap(IPlayer iPlayer ,  Coordinates coords) {
 		
 		int nb1 = coords.getNumber();
 		char letter1 = coords.getLetter();
 		
-		Map m = player.getPlayerMap();
+		Map m = iPlayer.getPlayerMap();
 		return (m.getLenght()>=letter1 && nb1>0 && m.getHeight()>=nb1 && letter1>='A') ;
 	}
 	
@@ -100,7 +98,7 @@ public class Rules {
 	}
 	
 	
-	public boolean isEmpty( Player player, Coordinates startCoord, Coordinates endCoord) {
+	public boolean isEmpty( IPlayer iPlayer, Coordinates startCoord, Coordinates endCoord) {
 		//Return true if there is no ship already on this coordinates
 		boolean empty = true;
 		
@@ -114,7 +112,7 @@ public class Rules {
 		{
 			for (char j = letter1; j <= letter2; j++){
 				
-				if  ( player.occupyCoordinates(new Coordinates(j,i))) {
+				if  ( iPlayer.occupyCoordinates(new Coordinates(j,i))) {
 					empty = false;
 				}
 			}
@@ -159,7 +157,7 @@ public class Rules {
 		}
 	}
 	
-	public boolean verifShipCoordinates( Player player, String startCoord,String endCoord, int size) {
+	public boolean verifShipCoordinates( IPlayer iPlayer, String startCoord,String endCoord, int size) {
 		// ask the coordinates of the ships considering all the rules
 		//Rules should be in good form, nondiagonal, good sized and on empty square
 		if (goodCoordinatesForm(startCoord) && goodCoordinatesForm(endCoord) ) {
@@ -167,10 +165,10 @@ public class Rules {
 			Coordinates coord1 = new Coordinates(startCoord);
 			Coordinates coord2 = new Coordinates(endCoord);
 			coordinatesShipConverter(coord1, coord2);
-			if (inMap(player,coord1) && inMap(player,coord2) ) {
+			if (inMap(iPlayer,coord1) && inMap(iPlayer,coord2) ) {
 				if (nonDiagonal(coord1,coord2)) {
 					if(goodSize(coord1,coord2, size)) {
-						if (isEmpty(player, coord1, coord2)) {
+						if (isEmpty(iPlayer, coord1, coord2)) {
 							return true;
 						}
 						else { System.out.println("Another ship is already on it");
@@ -198,7 +196,7 @@ public class Rules {
 	
 	}
 	
-	public boolean verifAIShipCoordinates( Player player, String startCoord,String endCoord, int size) {
+	public boolean verifAIShipCoordinates( IPlayer iPlayer, String startCoord,String endCoord, int size) {
 		// ask the coordinates of the ships considering all the rules
 		//Rules should be in good form, nondiagonal, good sized and on empty square
 		if (goodCoordinatesForm(startCoord) && goodCoordinatesForm(endCoord) ) {
@@ -206,10 +204,10 @@ public class Rules {
 			Coordinates coord1 = new Coordinates(startCoord);
 			Coordinates coord2 = new Coordinates(endCoord);
 			coordinatesShipConverter(coord1, coord2);
-			if (inMap(player,coord1) && inMap(player,coord2) ) {
+			if (inMap(iPlayer,coord1) && inMap(iPlayer,coord2) ) {
 				if (nonDiagonal(coord1,coord2)) {
 					if(goodSize(coord1,coord2, size)) {
-						if (isEmpty(player, coord1, coord2)) {
+						if (isEmpty(iPlayer, coord1, coord2)) {
 							return true;
 						}
 					}
@@ -223,7 +221,7 @@ public class Rules {
 	
 	}
 	
-	public boolean verifyCoordMissile(Player opponentPlayer, String missileCoord) {
+	public boolean verifyCoordMissile(IPlayer opponentPlayer, String missileCoord) {
 		// ask the coordinates of the missile considering all the rules
 			if (goodCoordinatesForm(missileCoord)  ) {
 				Coordinates coord = new Coordinates(missileCoord);
@@ -239,7 +237,7 @@ public class Rules {
 			return false;
 		}
 	
-	public boolean verifyAICoordMissile(Player opponentPlayer, String missileCoord) {
+	public boolean verifyAICoordMissile(IPlayer opponentPlayer, String missileCoord) {
 		// ask the coordinates of the missile considering all the rules
 			if (goodCoordinatesForm(missileCoord)  ) {
 				Coordinates coord = new Coordinates(missileCoord);

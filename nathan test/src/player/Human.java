@@ -8,7 +8,7 @@ import boardGame.Coordinates;
 import boardGame.Map;
 import boardGame.Ship;
 
-public class Human implements Player {
+public class Human implements IPlayer {
 	
 	String name;
 	HashSet<Ship> ships = new HashSet<Ship>();

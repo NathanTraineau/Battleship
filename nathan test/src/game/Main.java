@@ -1,4 +1,5 @@
 package game;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -32,7 +33,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("Which mode do you want to play ? HumanVsHuman 0 / HumanVsAI 1  / test the AI 2");
+		System.out.println("Which mode do you want to play ? HumanVsHuman 0 / HumanVsAI 1  ");
 		Scanner sc = new Scanner(System.in);
 		int answer1 = sc.nextInt();
 		Game game = new Game();
@@ -55,23 +56,11 @@ public class Main {
 				case 2 : 
 					System.out.println(game.play(rules, new Human(), new AI2()).getName()+" has won");
 					
-				}
-				break;
-			case 2 :
-				Test t = new Test();
-				List<String> lines = Arrays.asList("AI Name; score ; AI Name2 ; score2", "AI Level Beginner;"+ t.resultTestAI1vsAI0[1] +
-						"Level Medium" + t.resultTestAI1vsAI0[0], "AI Level Beginner;"+ t.resultTestAI2vsAI0[1] +
-						"Level Hard" + t.resultTestAI1vsAI0[0],  "AI Level Medium;"+ t.resultTestAI2vsAI1[1] +
-						"Level Hard" + t.resultTestAI1vsAI1[0] );
-				Path file = Paths.get("ai_proof.csv");
-				Files.write(file, lines, Charset.forName("UTF-8"));
-		
-		
-	
-		
-		//Règles
-
+				}break;
+			
 	}
+		sc.close();
+}
 }
 		
 			

@@ -10,7 +10,7 @@ public class AI0 extends AI{
 		
 	}
 	
-	public Coordinates shoot(Rules rules, Player opponentPlayer) {
+	public Coordinates shoot(Rules rules, IPlayer opponentPlayer) {
 		return chooseRandomCoordinates(opponentPlayer);
 	}
 

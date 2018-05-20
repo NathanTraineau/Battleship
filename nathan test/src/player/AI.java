@@ -9,7 +9,7 @@ import boardGame.Map;
 import boardGame.Ship;
 import game.Rules;
 
-public abstract class AI implements Player {
+public abstract class AI implements IPlayer {
 	
 	
 	String name;
@@ -84,24 +84,24 @@ public abstract class AI implements Player {
 	}
 	
 	
-	public Coordinates chooseRandomCoordinates( Player player) {
+	public Coordinates chooseRandomCoordinates( IPlayer iPlayer) {
 		// choose random coord on the player map
 		
 		Random r = new Random();
 		
-		int rand = (int) 65 + r.nextInt((int) (player.getPlayerMap().getLenght()+1)- 65);
+		int rand = (int) 65 + r.nextInt((int) (iPlayer.getPlayerMap().getLenght()+1)- 65);
 		rand = rand - 65;
 		//the rank of the chosen letter
 		char letter1 = '0';
 		// it count the incrementation of i
-		for ( char i = 'A'; i<= player.getPlayerMap().getLenght(); i++) {
+		for ( char i = 'A'; i<= iPlayer.getPlayerMap().getLenght(); i++) {
 			if ( (int) i- (int)'A' == rand) {
 				letter1 = i;
 				
 			};
 		
 		}
-		int nb1 = 1 + r.nextInt(player.getPlayerMap().getHeight());
+		int nb1 = 1 + r.nextInt(iPlayer.getPlayerMap().getHeight());
 		
 		return new Coordinates(letter1,nb1);
 	}
@@ -111,7 +111,7 @@ public abstract class AI implements Player {
 		
 	}*/
 	
-		public Coordinates[] chooseShipCoordinates(Rules rules, Player currentPlayer, int size) {
+		public Coordinates[] chooseShipCoordinates(Rules rules, IPlayer currentPlayer, int size) {
 			
 		int isBlocked = 0;
 		
@@ -183,7 +183,7 @@ public abstract class AI implements Player {
 		
 	
 	
-		public abstract Coordinates shoot(Rules rules, Player opponentPlayer);
+		public abstract Coordinates shoot(Rules rules, IPlayer opponentPlayer);
 		
 		// Add the shots on the map
 		

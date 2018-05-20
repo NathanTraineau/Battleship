@@ -24,7 +24,7 @@ public class AI2 extends AI {
 	}
 	
 	
-public Coordinates shoot(Rules rules ,Player opponentPlayer) {
+public Coordinates shoot(Rules rules ,IPlayer opponentPlayer) {
 	// This ai will save the 2 lasts HitShots
 		Coordinates coordFromWhereWeHit;
 		Coordinates shot;

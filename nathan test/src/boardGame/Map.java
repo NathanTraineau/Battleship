@@ -2,7 +2,6 @@ package boardGame;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import color.java;
 
 public class Map {
 	
