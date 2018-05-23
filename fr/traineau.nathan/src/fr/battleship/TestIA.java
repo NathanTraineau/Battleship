@@ -1,4 +1,4 @@
-package battleship;
+package fr.battleship;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -9,14 +9,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.*;
-import game.AI0;
-import game.AI1;
-import game.AI2;
-import game.Game;
-import game.IPlayer;
-import game.Rules;
 import player.*;
+import game.*
+;
 public class TestIA {
 	
 	int[] resultTestAI2vsAI1 ;
